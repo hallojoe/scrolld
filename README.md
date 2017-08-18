@@ -1,2 +1,2 @@
 # scrolld
-Javascript plugin that will tell you how far something has been scrolld.
+Javascript plugin that will tell how far down a thing has been vertically scrolld.
