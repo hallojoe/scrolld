@@ -26,7 +26,6 @@
    */
   function Scrolld(element) {
       this.element = !!element ? element : document;
-      console.log('Scrolld inititalized', this.element);
   }
 
   // compute element scroll factor
