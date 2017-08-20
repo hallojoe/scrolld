@@ -1,12 +1,12 @@
 # Scrolld
 Javascript plugin that will tell how far a thing has been vertically scrolld.
 
-#Install
+# Install
 
     npm install scrolld --save
 
 # Usage
-Instantiate a Srolld object and pass a target in the constructor. If  target is empty, then document will is target. 
+Instantiate a Scrolld object and pass a target in the constructor. If  target is empty, then document will is target. 
 
     var scrolld = new Scrolld();
     console.log(scrolld.percent())
