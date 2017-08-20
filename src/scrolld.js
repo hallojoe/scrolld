@@ -30,19 +30,24 @@
 
   // compute element scroll factor
   var getFactor = function(element) {
+
+    console.log('type', element.nodeType);
+    console.log('name', element.nodeName);
+    
     var result = 100;
     if(element.nodeType === 9) { // is #document 
       // https://stackoverflow.com/questions/2387136/cross-browser-method-to-determine-vertical-scroll-percentage-in-javascript/2387222#2387222
       result = (element.documentElement.scrollTop + element.body.scrollTop) /  (element.documentElement.scrollHeight - element.documentElement.clientHeight);    
     }
-    else {
-      var height = +(element.style.height.substring(0, element.style.height.length - 2));
-      result = element.scrollTop / (element.scrollHeight - height) ;
+    else { // other nodeTypes
+      //var height = parseInt(getComputedStyle(element, null).getPropertyValue('height'), 10);      
+      var height = element.getBoundingClientRect().height;
+      result = element.scrollTop / (element.scrollHeight - height);
     }
     if(result <= 0)
       result = 0;
-    if(result >= 99.8)
-      result = 100;
+    if(result >= .98)
+      result = 1;
     return result;
   }
 
