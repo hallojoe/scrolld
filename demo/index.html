@@ -1,68 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Srolld</title>
-  <meta name="description" content="avascript plugin that will tell how far a thing has been vertically scrolld.">
+  <meta name="description" content="Javascript plugin that will tell how far a thing has been vertically scrolld.">
   <link href="style.css" rel="stylesheet" type="text/css" />  
 </head>
-
 <body>
-  <div id="l0" class="l l0">0</div>
-  <h1>Scrolld demo</h1>
-  <p>Srolld in action.</p>
-  <hr>
-  <div class="wrap">
-    <div id="l1" class="l l1">0</div>
-      <div id="t1" class="container" style="">
-          1<br> 2
-          <br> 3
-          <br> 4
-          <br> 5
-          <br> 6
-          <br> 7
-          <br> 8
-          <br> 9
-          <br> 1
-          <br> 2
-          <br> 3
-          <br> 4
-          <br> 5
-          <br> 6
-          <br> 7
-          <br> 8
-          <br> 9
-      </div>
-    </div>
-    <hr>
-    <div class="wrap">
-        <div id="l2" class="l l2">0</div>
-            
-      <textarea id="t2">
-          1
-          2
-          3
-          4
-          5
-          6
-          7
-          8
-          9
-          1
-          2
-          3
-          4
-          5
-          6
-          7
-          8
-          9          
-        </textarea>
-    </div>
-    <script src="scrolld.min.js"></script>
-    <script src="script.js"></script>
-  </body>
-
+  <header>
+    <h1>Scrolld</h1>
+    <p>Javascript plugin that will tell how far a thing has been vertically scrolld.</p>
+    <svg viewBox="0 0 110 110" xmlns="http://www.w3.org/2000/svg" style="width:180px;">
+      <circle id="p" cx="55" cy="55" r="50" fill="transparent" stroke="yellow" stroke-width="10" style="visibility:hidden;"/>
+      <text id="pt" x="55" y="59" font-size="16" text-anchor="middle" fill="white">0%</text>
+    </svg>        
+    <p>Check it out on <a href="https://github.com/hallojoe/scrolld" title="Scrolld on GitHub">GitHub</a></p>
+  </header>
+  <script src="scrolld.min.js"></script>
+  <script src="script.js"></script>
+</body>
 </html>

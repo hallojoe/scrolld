@@ -1,63 +1,56 @@
 var scrollToken = -1,
-scrollToken1 = -1,
-scrollToken2 = -1;
+  scrolld = new Scrolld(),
+  scrolling = false;
 
-var t1 = document.querySelector('#t1');
-var t2 = document.querySelector('#t2');
+// Get a reference to the <path>
+var path = document.querySelector('#p');
+var text = document.querySelector('#pt');
 
-var scrolld0 = new Scrolld(), 
-    scrolld1 = new Scrolld(t1), 
-    scrolld2 = new Scrolld(t2);
+// Get length of path.
+var pathLength = path.getTotalLength();
 
-// labels
-var l0 = document.querySelector('#l0'),
-  l1 = document.querySelector('#l1'),
-  l2 = document.querySelector('#l2');
+// Make very long dashes (the length of the path itself)
+path.style.strokeDasharray = pathLength + ' ' + pathLength;
 
-var scrolling = false;
+// Offset the dashes so the it appears hidden entirely
+path.style.strokeDashoffset = pathLength;
+
+// Jake Archibald says so
+// https://jakearchibald.com/2013/animated-line-drawing-svg/
+path.getBoundingClientRect();
+
+function computeOffset() {
+
+  var scrollPercentage = scrolld.percent();
+
+  text.innerHTML = Math.round(scrollPercentage, 1) + '%';
+
+  // Length to offset the dashes
+  var drawLength = pathLength * (scrollPercentage / 100);
+
+  // Draw in reverse
+  path.style.strokeDashoffset = pathLength - drawLength;
+
+  // When complete, remove the dash array, otherwise shape isn't quite sharp
+  if (scrollPercentage / 100 >= 0.99) {
+    path.style.strokeDasharray = "none";
+  } else {
+    if (scrollPercentage <= 0)
+      path.style.visibility = 'hidden';
+    else
+      path.style.visibility = 'visible';
+
+    path.style.strokeDasharray = pathLength + ' ' + pathLength;
+  }
+
+}
 
 window.addEventListener("scroll", function (e) {
-
   scrolling = true;
-
-  l0.innerHTML = scrolld0.percent();
-
+  computeOffset();
   if (scrollToken !== -1)
     clearTimeout(scrollToken);
-
   scrollToken = setTimeout(function () {
     scrolling = false;
   }, 500);
-
 });
-
-t1.addEventListener("scroll", function (e) {
-  
-  scrolling = true;
-
-  l1.innerHTML = scrolld1.percent();
-
-  if (scrollToken1 !== -1)
-    clearTimeout(scrollToken1);
-
-  scrollToken1 = setTimeout(function () {
-    scrolling = false;
-  }, 500);
-
-});
-
-t2.addEventListener("scroll", function (e) {
-  
-    scrolling = true;
-  
-    l2.innerHTML = scrolld2.percent();
-  
-    if (scrollToken !== -1)
-      clearTimeout(scrollToken2);
-  
-    scrollToken2 = setTimeout(function () {
-      scrolling = false;
-    }, 500);
-  
-  });
-      
